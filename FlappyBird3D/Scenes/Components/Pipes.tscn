@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dct2eginj2tbl"]
+
+[ext_resource type="PackedScene" uid="uid://bd23k2i2m1586" path="res://Models/Pipes.glb" id="1_0643e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hf3s6"]
+size = Vector3(1.73627, 19.1095, 1.62555)
+
+[node name="Pipes" type="Node3D"]
+
+[node name="PipesMesh" parent="." instance=ExtResource( "1_0643e" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="TopPipeBody" type="StaticBody3D" parent="."]
+
+[node name="TopPipeCollider" type="CollisionShape3D" parent="TopPipeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.6948, 0)
+shape = SubResource( "BoxShape3D_hf3s6" )
+
+[node name="BottomPipeBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.4112, 0)
+
+[node name="BottomPipeCollider" type="CollisionShape3D" parent="BottomPipeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.6948, 0)
+shape = SubResource( "BoxShape3D_hf3s6" )

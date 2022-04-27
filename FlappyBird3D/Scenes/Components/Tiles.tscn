@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dadrvq6v6b364"]
+
+[ext_resource type="PackedScene" uid="uid://bastreui6sbsj" path="res://Models/Tile1.glb" id="1_kvcws"]
+[ext_resource type="PackedScene" uid="uid://p6qfute20f70" path="res://Models/Tile2.glb" id="2_a8cfa"]
+[ext_resource type="PackedScene" uid="uid://bbkatgbr1fpv1" path="res://Models/Tile3.glb" id="3_83spt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvsb8"]
+size = Vector3(7.1505, 8.64917, 38.4708)
+
+[node name="Tiles" type="Node3D"]
+
+[node name="Tile1" parent="." instance=ExtResource( "1_kvcws" )]
+
+[node name="Tile2" parent="." instance=ExtResource( "2_a8cfa" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.63595)
+
+[node name="Tile3" parent="." instance=ExtResource( "3_83spt" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.2683)
+
+[node name="Tile4" parent="." instance=ExtResource( "2_a8cfa" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.9081)
+
+[node name="TileBody" type="StaticBody3D" parent="."]
+
+[node name="TileCollider" type="CollisionShape3D" parent="TileBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.21691, -19.2374)
+shape = SubResource( "BoxShape3D_lvsb8" )

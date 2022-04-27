@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Components/BirdMesh.tscn" id="1_ptv2n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgtqu"]
+size = Vector3(1, 0.720326, 0.887474)
+
+[node name="Bird" type="Node3D"]
+
+[node name="BirdMesh" parent="." instance=ExtResource( "1_ptv2n" )]
+
+[node name="BirdBody" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BirdBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.66461)
+shape = SubResource( "BoxShape3D_bgtqu" )
