@@ -1,16 +1,61 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://d0dlkd5ea3q8c"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Components/BirdMesh.tscn" id="1_ptv2n"]
+[ext_resource type="Script" path="res://FlappyBirdLib/Components/Bird.cs" id="1_px1uw"]
+[ext_resource type="PackedScene" uid="uid://okt163o83ygt" path="res://Models/Bird.glb" id="2_hexe3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bgtqu"]
 size = Vector3(1, 0.720326, 0.887474)
 
-[node name="Bird" type="Node3D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qiqh4"]
+animation = &"idle"
 
-[node name="BirdMesh" parent="." instance=ExtResource( "1_ptv2n" )]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uwhcc"]
+animation = &"wings_flapping"
 
-[node name="BirdBody" type="StaticBody3D" parent="."]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_muajt"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BirdBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.66461)
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_acb83"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2n8yj"]
+states/idle/node = SubResource( "AnimationNodeAnimation_qiqh4" )
+states/idle/position = Vector2(364, 162)
+states/wings_flapping/node = SubResource( "AnimationNodeAnimation_uwhcc" )
+states/wings_flapping/position = Vector2(922, 101)
+transitions = [&"idle", &"wings_flapping", SubResource( "AnimationNodeStateMachineTransition_muajt" ), &"wings_flapping", &"idle", SubResource( "AnimationNodeStateMachineTransition_acb83" )]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_oi5ho"]
+
+[node name="Bird" type="RigidDynamicBody3D"]
+input_ray_pickable = false
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+gravity_scale = 2.0
+contacts_reported = 4
+contact_monitor = true
+sleeping = true
+script = ExtResource( "1_px1uw" )
+
+[node name="BirdMeshPivot" type="Node3D" parent="."]
+
+[node name="BirdMesh" parent="BirdMeshPivot" instance=ExtResource( "2_hexe3" )]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -4, -6.6801)
+
+[node name="Skeleton3D" parent="BirdMeshPivot/BirdMesh/bird_armature" index="0"]
+bones/3/rotation = Quaternion(2.75358e-07, 0, -0.707107, 0.707107)
+bones/5/rotation = Quaternion(-2.75358e-07, 0, 0.707107, 0.707107)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.689616)
 shape = SubResource( "BoxShape3D_bgtqu" )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( "AnimationNodeStateMachine_2n8yj" )
+anim_player = NodePath("../BirdMeshPivot/BirdMesh/AnimationPlayer")
+active = true
+parameters/playback = SubResource( "AnimationNodeStateMachinePlayback_oi5ho" )
+
+[editable path="BirdMeshPivot/BirdMesh"]

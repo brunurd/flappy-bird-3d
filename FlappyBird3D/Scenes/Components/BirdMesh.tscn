@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ux7t3sxwdi60"]
-
-[ext_resource type="PackedScene" uid="uid://das4htyftr63f" path="res://Models/Bird.glb" id="1_dugxn"]
-
-[node name="Bird" instance=ExtResource( "1_dugxn" )]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00263, 0)

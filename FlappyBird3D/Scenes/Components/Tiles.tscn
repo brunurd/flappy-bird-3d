@@ -21,6 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.2683)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.9081)
 
 [node name="TileBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279678, 0)
 
 [node name="TileCollider" type="CollisionShape3D" parent="TileBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.21691, -19.2374)

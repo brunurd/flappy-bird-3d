@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://das4htyftr63f"
+uid="uid://okt163o83ygt"
 path="res://.godot/imported/Bird.glb-e806d96ba2a5e610106235230f105200.scn"
 
 [deps]
@@ -25,4 +25,19 @@ skins/use_named_skins=true
 animation/import=true
 animation/fps=30
 import_script/path=""
-_subresources={}
+_subresources={
+"animations": {
+"idle": {
+"save_to_file/enabled": false,
+"save_to_file/keep_custom_tracks": "",
+"save_to_file/path": "",
+"settings/loop_mode": 1
+},
+"wings_flapping": {
+"save_to_file/enabled": false,
+"save_to_file/keep_custom_tracks": "",
+"save_to_file/path": "",
+"settings/loop_mode": 1
+}
+}
+}

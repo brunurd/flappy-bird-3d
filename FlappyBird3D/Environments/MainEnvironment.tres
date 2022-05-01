@@ -2,7 +2,9 @@
 
 [resource]
 background_mode = 1
-background_color = Color(0.215686, 0.294118, 0.541176, 1)
+background_color = Color(0.313726, 0.427451, 0.788235, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.501961, 0.231373, 0.0470588, 1)
+ambient_light_color = Color(0.501961, 0.364706, 0.286275, 1)
 ambient_light_energy = 1.12
+sdfgi_enabled = true
+sdfgi_use_occlusion = true

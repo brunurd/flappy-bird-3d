@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ogpkwsf6vhnn"]
+
+[ext_resource type="PackedScene" uid="uid://dadrvq6v6b364" path="res://Scenes/Components/Tiles.tscn" id="1_a14vr"]
+[ext_resource type="Script" path="res://FlappyBirdLib/Components/TilesManager.cs" id="1_b062x"]
+
+[node name="TilesManager" type="Node3D"]
+script = ExtResource( "1_b062x" )
+
+[node name="Tiles1" parent="." instance=ExtResource( "1_a14vr" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38.5238)
+
+[node name="Tiles2" parent="." instance=ExtResource( "1_a14vr" )]
+
+[node name="Tiles3" parent="." instance=ExtResource( "1_a14vr" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.524)

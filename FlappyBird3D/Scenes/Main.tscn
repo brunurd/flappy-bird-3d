@@ -1,25 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvhbxbsnr0vxu"]
+[gd_scene load_steps=6 format=3 uid="uid://bvhbxbsnr0vxu"]
 
 [ext_resource type="Environment" uid="uid://cek867xxfgmi6" path="res://Environments/MainEnvironment.tres" id="1_1pqp8"]
-[ext_resource type="PackedScene" uid="uid://dadrvq6v6b364" path="res://Scenes/Components/Tiles.tscn" id="1_rboo6"]
-[ext_resource type="PackedScene" uid="uid://dct2eginj2tbl" path="res://Scenes/Components/Pipes.tscn" id="2_vblix"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/Bird.tscn" id="3_ef2oi"]
+[ext_resource type="PackedScene" uid="uid://d0dlkd5ea3q8c" path="res://Scenes/Components/Bird.tscn" id="3_ef2oi"]
+[ext_resource type="PackedScene" uid="uid://ogpkwsf6vhnn" path="res://Scenes/Components/TilesManager.tscn" id="3_klrx2"]
+[ext_resource type="PackedScene" uid="uid://bi72041lildkp" path="res://Scenes/Components/PipesManager.tscn" id="4_af7q0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x8tyb"]
+size = Vector3(12.3724, 7.47104, 60.7714)
 
 [node name="Main" type="Node"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.07, 5.591, -20)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( "1_1pqp8" )
 
-[node name="Tiles" parent="." instance=ExtResource( "1_rboo6" )]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.916342, 0.0374789, 0.398639, -0.400397, 0.0857736, 0.912319, -2.22045e-16, -0.99561, 0.0936043, 20.0595, 18.0462, 0)
+light_energy = 1.2
 
-[node name="Pipes" parent="." instance=ExtResource( "2_vblix" )]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.065, -21.181)
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84622, 4.687, -20)
+light_color = Color(0.913725, 0.745098, 0.701961, 1)
+light_energy = 9.54
+omni_range = 18.3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 15, 4.687, -20)
+projection = 1
+current = true
+fov = 60.0
+size = 12.853
+
+[node name="Celling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.8411, -21.0076)
+
+[node name="CellingCollider" type="CollisionShape3D" parent="Celling"]
+shape = SubResource( "BoxShape3D_x8tyb" )
 
 [node name="Bird" parent="." instance=ExtResource( "3_ef2oi" )]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.065, -21.181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.79, -19.5)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.916342, 0.0374789, 0.398639, -0.400397, 0.0857736, 0.912319, -2.22045e-16, -0.99561, 0.0936044, 20.0595, 18.0462, 0)
+[node name="TilesManager" parent="." instance=ExtResource( "3_klrx2" )]
+
+[node name="PipesManager" parent="." instance=ExtResource( "4_af7q0" )]
